@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jober/screens/sign_up/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -61,7 +62,10 @@ class LoginScreen extends StatelessWidget {
               RaisedButton(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 color: Colors.deepPurpleAccent,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                },
                 child: Text(
                   'Entrar',
                   style: TextStyle(color: Colors.white, fontSize: 16),
