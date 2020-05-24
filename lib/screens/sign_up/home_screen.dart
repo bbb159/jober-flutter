@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jober/commons/widgets/custom_app_bar.dart';
 import 'package:jober/screens/sign_up/person_identifier_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
 import 'package:jober/utils/constants.dart';
@@ -20,29 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Informe se você é Pessoa Física ou Jurídica",
-          textAlign: TextAlign.left,
-          style: TextStyle(color: Color.fromRGBO(63, 63, 63, 1), fontSize: 14),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color: Colors.black, //change your color here
-        ),
-        leading: new IconButton(
-          icon: RawMaterialButton(
-            onPressed: () => Navigator.of(context).pop(),
-            fillColor: kPurpleDefaultColor,
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-              size: 35.0,
-            ),
-            shape: CircleBorder(),
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: 'Informe se você é pessoa física ou jurídica',
+        appBar: AppBar(),
       ),
       backgroundColor: Colors.white,
       body: Container(
