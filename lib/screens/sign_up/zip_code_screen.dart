@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
-import 'package:jober/screens/login_screen.dart';
+import 'package:jober/screens/sign_in/sign_in.dart';
 import 'package:jober/screens/sign_up/address_screen.dart';
 import 'package:jober/screens/sign_up/name_and_birth_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';

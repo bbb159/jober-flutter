@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jober/screens/login_screen.dart';
+import 'package:jober/screens/home/home_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,8 +10,9 @@ class MyApp extends StatelessWidget {
       title: 'Jober',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.transparent,
       ),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

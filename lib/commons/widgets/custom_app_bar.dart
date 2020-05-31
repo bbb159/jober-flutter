@@ -4,29 +4,44 @@ import 'package:jober/utils/constants.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final AppBar appBar;
+  final Color backIconColor;
+  final bool finderWhite;
 
-  CustomAppBar({Key key, this.title, this.appBar}) : super(key: key);
+  CustomAppBar(
+      {Key key, this.title, this.appBar, this.backIconColor, this.finderWhite})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        title,
-        textAlign: TextAlign.left,
-        style: TextStyle(color: Color.fromRGBO(63, 63, 63, 1), fontSize: 14),
+      backgroundColor: Colors.transparent,
+      title: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 1),
+          children: <TextSpan>[
+            new TextSpan(
+              text: 'JOBER',
+              style: TextStyle(color: kBlueDefaultColor),
+            ),
+            new TextSpan(
+                text: 'FINDER',
+                style: TextStyle(
+                    color: finderWhite != null
+                        ? Colors.white
+                        : kPurpleDefaultColor)),
+          ],
+        ),
       ),
-      backgroundColor: Colors.white,
       elevation: 0,
-      iconTheme: IconThemeData(
-        color: Colors.black, //change your color here
-      ),
+      centerTitle: true,
       leading: new IconButton(
         icon: RawMaterialButton(
           onPressed: () => Navigator.of(context).pop(),
-          fillColor: kPurpleDefaultColor,
           child: Icon(
             Icons.arrow_back,
-            color: Colors.white,
+            color: backIconColor,
             size: 35.0,
           ),
           shape: CircleBorder(),

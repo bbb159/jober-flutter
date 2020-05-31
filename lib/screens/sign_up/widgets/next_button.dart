@@ -14,17 +14,14 @@ class NextButton extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: ButtonTheme(
-              height: 50,
+              height: 65,
               minWidth: 330,
               child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
                 onPressed: callback,
-                color: kPurpleDefaultColor,
+                color: kBlueDefaultColor,
                 child: Text(
                   "Próximo",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
             ),

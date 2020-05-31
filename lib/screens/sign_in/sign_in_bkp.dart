@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jober/screens/sign_up/home_screen.dart';
+import 'package:jober/screens/sign_up/person_type_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,8 +63,8 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 color: Colors.deepPurpleAccent,
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => PersonTypeScreen()));
                 },
                 child: Text(
                   'Entrar',

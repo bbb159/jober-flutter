@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
-import 'package:jober/screens/login_screen.dart';
+import 'package:jober/screens/sign_in/sign_in.dart';
 import 'package:jober/screens/sign_up/name_and_birth_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
@@ -19,16 +19,15 @@ class _PersonIdentifierState extends State<PersonIdentifier> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Digite o numero do seu CPF',
         appBar: AppBar(),
+        backIconColor: Colors.white,
+        finderWhite: true,
       ),
       body: Container(
-        padding: EdgeInsets.all(15),
-        color: Colors.white,
         child: Column(
           children: <Widget>[
             Flexible(
-              flex: 9,
+              flex: 6,
               child: Form(
                 key: _formKey,
                 child: ListView(
@@ -44,18 +43,15 @@ class _PersonIdentifierState extends State<PersonIdentifier> {
                 ),
               ),
             ),
-            Flexible(
-              flex: 1,
-              child: NextButton(
-                callback: () {
-                  if (_formKey.currentState.validate()) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => NameBirthScreen()));
-                  } else {
-                    return null;
-                  }
-                },
-              ),
+            NextButton(
+              callback: () {
+                if (_formKey.currentState.validate()) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => NameBirthScreen()));
+                } else {
+                  return null;
+                }
+              },
             ),
           ],
         ),
