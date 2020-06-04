@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:jober/screens/sign_in/sign_in.dart';
 import 'package:jober/utils/constants.dart';
 
 class SignUpSucessfulScreen extends StatelessWidget {
@@ -22,7 +23,6 @@ class SignUpSucessfulScreen extends StatelessWidget {
               'Cadastro realizado com sucesso!',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
                 fontSize: 28,
                 color: kPurpleDefaultColor,
               ),
@@ -35,33 +35,41 @@ class SignUpSucessfulScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ButtonTheme(
-                  height: 50,
+                  height: 60,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                     onPressed: () {},
-                    color: kPurpleDefaultColor,
+                    color: kBlueDefaultColor,
                     child: Text(
                       "Continuar para o aplicativo",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300),
                     ),
                   ),
                 ),
                 SizedBox(height: 15),
                 ButtonTheme(
-                  height: 50,
+                  height: 60,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                       side: BorderSide(color: kPurpleDefaultColor),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SignInScreen()));
+                    },
                     color: Colors.white,
                     child: Text(
                       "Fazer Login",
-                      style:
-                          TextStyle(color: kPurpleDefaultColor, fontSize: 16),
+                      style: TextStyle(
+                          color: kPurpleDefaultColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w300),
                     ),
                   ),
                 ),

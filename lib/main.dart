@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'Jober',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.transparent,
+        unselectedWidgetColor: Colors.white30,
       ),
       home: HomeScreen(),
     );

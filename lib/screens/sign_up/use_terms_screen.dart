@@ -3,18 +3,29 @@ import 'package:jober/commons/widgets/custom_app_bar.dart';
 import 'package:jober/main.dart';
 import 'package:jober/screens/sign_up/sign_up_successfull_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
+import 'package:jober/utils/constants.dart';
 
 class UseTermsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Termos de uso do Meu Emprego',
         appBar: AppBar(),
+        finderWhite: true,
+        backIconColor: Colors.white,
+        backgroundColor: kPurpleDefaultColor,
+        title: 'Termos de uso',
       ),
       body: Container(
         padding: EdgeInsets.all(15),
-        color: Colors.white,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [kPurpleDefaultColor, kPurpleLightDefaultColor],
+          ),
+        ),
         child: ListView(
           children: <Widget>[
             Container(
@@ -151,15 +162,8 @@ class UseTermsScreen extends StatelessWidget {
                 'This book is a treatise on the theory of ethics, very popular during the Renaissance. '
                 'The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", '
                 'comes from a line in section 1.10.32.',
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 14, color: Colors.white),
               ),
-            ),
-            SizedBox(height: 15),
-            NextButton(
-              callback: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => SignUpSucessfulScreen()));
-              },
             ),
           ],
         ),

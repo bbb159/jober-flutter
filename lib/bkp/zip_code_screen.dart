@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
-import 'package:jober/screens/sign_up/name_and_birth_screen.dart';
-import 'package:jober/screens/sign_up/password_screen.dart';
+import 'package:jober/screens/sign_in/sign_in.dart';
+import 'package:jober/bkp/address_screen.dart';
+import 'package:jober/bkp/name_and_birth_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
+import 'package:jober/utils/constants.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class EmailScreen extends StatefulWidget {
+class ZipCodeScreen extends StatefulWidget {
   @override
-  _EmailScreenState createState() => _EmailScreenState();
+  _ZipCodeScreenState createState() => _ZipCodeScreenState();
 }
 
-class _EmailScreenState extends State<EmailScreen> {
+class _ZipCodeScreenState extends State<ZipCodeScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _zipCodeController = TextEditingController();
+
+  var zipCodeFormatter = new MaskTextInputFormatter(
+      mask: '##.###-###', filter: {"#": RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Informe seu e-mail',
+        title: 'Informe seu CEP',
         appBar: AppBar(),
       ),
       body: Container(
@@ -33,11 +39,12 @@ class _EmailScreenState extends State<EmailScreen> {
                 child: ListView(
                   children: <Widget>[
                     CustomTextFormField(
-                      controller: _emailController,
-                      validationText: 'Email inválido',
-                      hintText: 'Email',
-                      labelBorderText: 'Email',
-                      textInputType: TextInputType.emailAddress,
+                      controller: _zipCodeController,
+                      textInputType: TextInputType.number,
+                      labelBorderText: 'CEP',
+                      hintText: 'CEP',
+                      validationText: 'CEP inválido',
+                      inputFormatters: [zipCodeFormatter],
                     ),
                   ],
                 ),
@@ -49,7 +56,7 @@ class _EmailScreenState extends State<EmailScreen> {
                 callback: () {
                   if (_formKey.currentState.validate()) {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PasswordScreen()));
+                        builder: (context) => AddressScreen()));
                   } else {
                     return null;
                   }

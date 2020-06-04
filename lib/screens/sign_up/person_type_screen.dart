@@ -101,16 +101,14 @@ class _PersonTypeScreenState extends State<PersonTypeScreen> {
                 ],
               ),
             ),
-            Expanded(
-              child: NextButton(
-                callback: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PersonIdentifier()));
-                },
-              ),
-            ),
           ],
         ),
+      ),
+      bottomNavigationBar: NextButton(
+        callback: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => PersonIdentifierScreen()));
+        },
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
-import 'package:jober/screens/sign_up/person_type_screen.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
 import 'package:jober/utils/constants.dart';
+import 'package:jober/utils/enums.dart';
 
 class SignInScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
@@ -13,7 +13,9 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+        ),
         backIconColor: kPurpleDefaultColor,
       ),
       body: Container(
@@ -41,17 +43,17 @@ class SignInScreen extends StatelessWidget {
                               CustomTextFormField(
                                 controller: _emailController,
                                 hintText: 'E-mail',
-                                hintTextColor: kPurpleDefaultColor,
-                                textColor: kPurpleDefaultColor,
+                                labelBorderText: 'E-mail',
+                                colorPattern: ColorPattern.WHITE,
                                 validationText: 'E-mail inválido',
                                 textInputType: TextInputType.emailAddress,
                               ),
-                              SizedBox(height: 20),
+                              SizedBox(height: 30),
                               CustomTextFormField(
                                 controller: _passwordController,
                                 hintText: 'Senha de acesso',
-                                hintTextColor: kPurpleDefaultColor,
-                                textColor: kPurpleDefaultColor,
+                                labelBorderText: 'Senha de acesso',
+                                colorPattern: ColorPattern.WHITE,
                                 validationText: 'Senha inválida',
                                 obscureText: true,
                               ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
-import 'package:jober/screens/sign_up/email_screen.dart';
+import 'package:jober/screens/sign_up/email_password_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
-import 'package:jober/screens/sign_up/zip_code_screen.dart';
+import 'package:jober/bkp/zip_code_screen.dart';
 import 'package:jober/utils/constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -73,8 +73,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
               child: NextButton(
                 callback: () {
                   if (_formKey.currentState.validate()) {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => EmailScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => EmailPasswordScreen()));
                   } else {
                     return null;
                   }

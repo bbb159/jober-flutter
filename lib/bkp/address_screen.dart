@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
-import 'package:jober/screens/sign_up/contacts_screen.dart';
+import 'package:jober/bkp/contacts_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
-import 'package:jober/screens/sign_up/zip_code_screen.dart';
+import 'package:jober/bkp/zip_code_screen.dart';
 import 'package:jober/utils/constants.dart';
 
 class AddressScreen extends StatefulWidget {

@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    'Bem findo ao JobFinder',
+                    'Bem vindo ao JobFinder',
                     style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
