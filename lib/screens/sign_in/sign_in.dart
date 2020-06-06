@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
+import 'package:jober/commons/widgets/custom_raised_button.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
 import 'package:jober/utils/constants.dart';
 import 'package:jober/utils/enums.dart';
@@ -81,31 +82,19 @@ class SignInScreen extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               SizedBox(height: 60),
-                              Container(
+                              CustomRaisedButton(
                                 width: 280,
                                 height: 50,
-                                child: RaisedButton(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 15),
-                                  color: kBlueDefaultColor,
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignInScreen()));
-                                  },
-                                  child: Text(
-                                    'Entrar',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                ),
+                                bgColor: kBlueDefaultColor,
+                                callback: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => SignInScreen()));
+                                },
+                                text: 'Entrar',
+                                textColor: Colors.white,
+                                textSize: 16,
+                                textWeigth: FontWeight.w300,
+                                borderRadius: 50,
                               ),
                               SizedBox(height: 20),
                               Container(

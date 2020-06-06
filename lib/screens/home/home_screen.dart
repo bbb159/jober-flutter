@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jober/commons/widgets/custom_raised_button.dart';
 import 'package:jober/screens/sign_in/sign_in.dart';
 import 'package:jober/screens/sign_up/person_type_screen.dart';
 import 'package:jober/utils/constants.dart';
@@ -61,52 +62,34 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 60),
-                    Container(
+                    CustomRaisedButton(
                       width: 280,
                       height: 50,
-                      child: RaisedButton(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        color: kBlueDefaultColor,
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SignInScreen()));
-                        },
-                        child: Text(
-                          'Entrar',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
+                      bgColor: kBlueDefaultColor,
+                      callback: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SignInScreen()));
+                      },
+                      text: 'Entrar',
+                      textColor: Colors.white,
+                      textSize: 16,
+                      textWeigth: FontWeight.w300,
+                      borderRadius: 50,
                     ),
                     SizedBox(height: 15),
-                    Container(
+                    CustomRaisedButton(
                       width: 280,
                       height: 50,
-                      child: RaisedButton(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        color: Colors.white,
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => PersonTypeScreen()));
-                        },
-                        child: Text(
-                          'Cadastrar',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                      ),
+                      bgColor: Colors.white,
+                      callback: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PersonTypeScreen()));
+                      },
+                      text: 'Cadastrar',
+                      textColor: Colors.black,
+                      textSize: 16,
+                      textWeigth: FontWeight.w300,
+                      borderRadius: 50,
                     ),
                   ],
                 ),

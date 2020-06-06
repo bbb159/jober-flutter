@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
+import 'package:jober/commons/widgets/custom_raised_button.dart';
 import 'package:jober/screens/sign_up/person_identifier_screen.dart';
 import 'package:jober/screens/sign_up/widgets/next_button.dart';
 import 'package:jober/utils/constants.dart';
@@ -73,22 +74,17 @@ class _PersonTypeScreenState extends State<PersonTypeScreen> {
               ],
             ),
             SizedBox(height: 30),
-            ButtonTheme(
+            CustomRaisedButton(
+              width: 220,
               height: 40,
-              minWidth: 220,
-              child: RaisedButton(
-                onPressed: () {},
-                color: kPurpleDefaultColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Text(
-                  personChoosed == 'PHYSICAL'
-                      ? 'Sou Pessoa Física'
-                      : 'Sou Pessoa Jurídica',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-              ),
+              bgColor: kPurpleDefaultColor,
+              callback: () {},
+              text: personChoosed == 'PHYSICAL'
+                  ? 'Sou Pessoa Física'
+                  : 'Sou Pessoa Jurídica',
+              textColor: Colors.white,
+              textSize: 16,
+              borderRadius: 50,
             ),
             SizedBox(height: 20),
             Container(
@@ -105,22 +101,6 @@ class _PersonTypeScreenState extends State<PersonTypeScreen> {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => PersonIdentifierScreen()));
         },
-      ),
-    );
-  }
-
-  Widget buildPersonTypeContainer({String imagePath, String personType}) {
-    return Container(
-      width: 230,
-      height: 300,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(20),
-        ),
-      ),
-      child: Image.asset(
-        imagePath,
-        fit: BoxFit.fill,
       ),
     );
   }
