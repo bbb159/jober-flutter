@@ -24,6 +24,20 @@ class _JobAreaScreenState extends State<JobAreaScreen> {
     'Porteiro'
   ];
 
+  List<String> areasFiltered = [
+    'Administração',
+    'Direito',
+    'Construção Civil',
+    'Engenheria e Arquitetura',
+    'Design',
+    'Gastronomia',
+    'Desenho Técnico',
+    'Padeiro',
+    'Pedreiro',
+    'Faxineira',
+    'Porteiro'
+  ];
+
   String _radioValue = 'Administração';
 
   final _searchAreaController = TextEditingController();
@@ -31,6 +45,19 @@ class _JobAreaScreenState extends State<JobAreaScreen> {
   _handleRadioValueChange(value) {
     setState(() {
       _radioValue = value;
+    });
+  }
+
+  _filterJobArea(String value) {
+    setState(() {
+      if (value != '') {
+        areasFiltered = areas
+            .where((element) =>
+                element.toLowerCase().contains(value.toLowerCase()))
+            .toList();
+      } else {
+        areasFiltered = areas;
+      }
     });
   }
 
@@ -87,17 +114,17 @@ class _JobAreaScreenState extends State<JobAreaScreen> {
                     dense: true,
                     leading: new Icon(
                       Icons.search,
-                      color: Colors.white70,
+                      color: Colors.grey[100],
                     ),
                     title: new TextField(
                       controller: _searchAreaController,
                       decoration: new InputDecoration(
                         hintText: 'Filtre por área',
-                        hintStyle: TextStyle(color: Colors.white70),
+                        hintStyle: TextStyle(color: Colors.grey[100]),
                         border: InputBorder.none,
                       ),
-                      style: TextStyle(color: Colors.white70),
-                      onChanged: (value) {},
+                      style: TextStyle(color: Colors.grey[100]),
+                      onChanged: _filterJobArea,
                     ),
                   ),
                 ),
@@ -135,14 +162,15 @@ class _JobAreaScreenState extends State<JobAreaScreen> {
   }
 
   List<Widget> buildItems() {
-    return areas
+    return areasFiltered
         .map((area) => new RadioListTile(
               activeColor: Colors.white,
               groupValue: _radioValue,
               title: Text(
                 area,
                 style: TextStyle(
-                  color: area == _radioValue ? Colors.white70 : Colors.white30,
+                  color:
+                      area == _radioValue ? Colors.grey[50] : Colors.grey[400],
                 ),
               ),
               value: area,
