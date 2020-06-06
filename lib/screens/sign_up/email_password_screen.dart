@@ -14,9 +14,11 @@ class EmailPasswordScreen extends StatefulWidget {
 }
 
 class _EmailPasswordScreenState extends State<EmailPasswordScreen> {
+  final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  bool _autoValidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,36 +66,45 @@ class _EmailPasswordScreenState extends State<EmailPasswordScreen> {
                     ),
                   ),
                   SizedBox(height: 30),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomTextFormField(
-                      controller: _emailController,
-                      validationText: 'E-mail inválido',
-                      hintText: 'E-mail',
-                      labelBorderText: 'E-mail',
-                      colorPattern: ColorPattern.PURPLE,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomTextFormField(
-                      controller: _passwordController,
-                      validationText: 'Senha inválida',
-                      hintText: 'Crie uma senha',
-                      labelBorderText: 'Crie uma senha',
-                      colorPattern: ColorPattern.PURPLE,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: CustomTextFormField(
-                      controller: _confirmPasswordController,
-                      validationText: 'Confirmação de senha inválida',
-                      hintText: 'Repita sua senha',
-                      labelBorderText: 'Repita sua senha',
-                      colorPattern: ColorPattern.PURPLE,
+                  Form(
+                    key: _formKey,
+                    autovalidate: _autoValidate,
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: CustomTextFormField(
+                            controller: _emailController,
+                            validationText: 'E-mail inválido',
+                            hintText: 'E-mail',
+                            labelBorderText: 'E-mail',
+                            colorPattern: ColorPattern.PURPLE,
+                            textInputType: TextInputType.emailAddress,
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: CustomTextFormField(
+                            controller: _passwordController,
+                            validationText: 'Senha inválida',
+                            hintText: 'Crie uma senha',
+                            labelBorderText: 'Crie uma senha',
+                            colorPattern: ColorPattern.PURPLE,
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: CustomTextFormField(
+                            controller: _confirmPasswordController,
+                            validationText: 'Confirmação de senha inválida',
+                            hintText: 'Repita sua senha',
+                            labelBorderText: 'Repita sua senha',
+                            colorPattern: ColorPattern.PURPLE,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(height: 40),
@@ -138,8 +149,14 @@ class _EmailPasswordScreenState extends State<EmailPasswordScreen> {
       bottomNavigationBar: NextButton(
         text: 'Finalizar',
         callback: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => SignUpSucessfulScreen()));
+          if (_formKey.currentState.validate()) {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SignUpSucessfulScreen()));
+          } else {
+            setState(() {
+              _autoValidate = true;
+            });
+          }
         },
       ),
     );

@@ -5,10 +5,19 @@ import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
 import 'package:jober/utils/constants.dart';
 import 'package:jober/utils/enums.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
+
   final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController();
+
+  bool _autoValidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +48,7 @@ class SignInScreen extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 30),
                         child: Form(
                           key: _formKey,
+                          autovalidate: _autoValidate,
                           child: Column(
                             children: <Widget>[
                               CustomTextFormField(
@@ -87,8 +97,16 @@ class SignInScreen extends StatelessWidget {
                                 height: 50,
                                 bgColor: kBlueDefaultColor,
                                 callback: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => SignInScreen()));
+                                  if (_formKey.currentState.validate()) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SignInScreen()));
+                                  } else {
+                                    setState(() {
+                                      _autoValidate = true;
+                                    });
+                                  }
                                 },
                                 text: 'Entrar',
                                 textColor: Colors.white,

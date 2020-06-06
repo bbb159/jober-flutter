@@ -32,6 +32,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Color _fillColor = Colors.transparent;
   Color _textColor = Colors.white;
   Color _borderColor = Colors.white;
+  Color _errorColor = Colors.red;
 
   @override
   void initState() {
@@ -53,6 +54,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         _fillColor = Colors.transparent;
         _textColor = Colors.white;
         _borderColor = Colors.white;
+        _errorColor = kBlueDefaultColor;
         break;
     }
   }
@@ -64,6 +66,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       decoration: InputDecoration(
         labelText: widget.labelBorderText,
         labelStyle: TextStyle(color: _hintTextColor),
+        errorStyle: TextStyle(color: _errorColor),
         hintText: widget.hintText,
         hintStyle:
             TextStyle(color: _hintTextColor, fontWeight: FontWeight.w300),
@@ -73,6 +76,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           borderRadius: BorderRadius.circular(50.0),
         ),
         focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: _borderColor),
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: _errorColor),
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: _borderColor),
           borderRadius: BorderRadius.circular(50.0),
         ),

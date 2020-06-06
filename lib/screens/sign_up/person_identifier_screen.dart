@@ -12,9 +12,11 @@ class PersonIdentifierScreen extends StatefulWidget {
 }
 
 class _PersonIdentifierScreenState extends State<PersonIdentifierScreen> {
+  final _formKey = GlobalKey<FormState>();
   final _personIdentifierController = TextEditingController();
   final _nameController = TextEditingController();
   final _lastNameController = TextEditingController();
+  bool _autoValidate = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,47 +62,61 @@ class _PersonIdentifierScreenState extends State<PersonIdentifierScreen> {
                 ),
               ),
               SizedBox(height: 30),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: CustomTextFormField(
-                  controller: _personIdentifierController,
-                  validationText: 'CPF inválido',
-                  hintText: 'CPF',
-                  labelBorderText: 'CPF',
-                  textInputType: TextInputType.number,
-                  colorPattern: ColorPattern.PURPLE,
+              Form(
+                key: _formKey,
+                autovalidate: _autoValidate,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: CustomTextFormField(
+                        controller: _personIdentifierController,
+                        validationText: 'CPF inválido',
+                        hintText: 'CPF',
+                        labelBorderText: 'CPF',
+                        textInputType: TextInputType.number,
+                        colorPattern: ColorPattern.PURPLE,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: CustomTextFormField(
+                        controller: _nameController,
+                        validationText: 'Nome inválido',
+                        hintText: 'Nome',
+                        labelBorderText: 'Nome',
+                        colorPattern: ColorPattern.PURPLE,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: CustomTextFormField(
+                        controller: _lastNameController,
+                        validationText: 'Sobrenome inválido',
+                        hintText: 'Sobrenome',
+                        labelBorderText: 'Sobrenome',
+                        colorPattern: ColorPattern.PURPLE,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 30),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: CustomTextFormField(
-                  controller: _nameController,
-                  validationText: 'Nome inválido',
-                  hintText: 'Nome',
-                  labelBorderText: 'Nome',
-                  colorPattern: ColorPattern.PURPLE,
-                ),
-              ),
-              SizedBox(height: 30),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: CustomTextFormField(
-                  controller: _lastNameController,
-                  validationText: 'Sobrenome inválido',
-                  hintText: 'Sobrenome',
-                  labelBorderText: 'Sobrenome',
-                  colorPattern: ColorPattern.PURPLE,
-                ),
-              ),
+              )
             ],
           ),
         ),
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => JobAreaScreen()));
+          if (_formKey.currentState.validate()) {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => JobAreaScreen()));
+          } else {
+            setState(() {
+              _autoValidate = true;
+            });
+          }
         },
       ),
     );
