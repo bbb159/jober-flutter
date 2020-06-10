@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
 import 'package:jober/commons/widgets/custom_raised_button.dart';
+import 'package:jober/screens/dashboard/dashboard_screen.dart';
 import 'package:jober/screens/sign_up/widgets/text_form_field.dart';
 import 'package:jober/utils/constants.dart';
 import 'package:jober/utils/enums.dart';
@@ -97,16 +98,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                 height: 50,
                                 bgColor: kBlueDefaultColor,
                                 callback: () {
-                                  if (_formKey.currentState.validate()) {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignInScreen()));
-                                  } else {
-                                    setState(() {
-                                      _autoValidate = true;
-                                    });
-                                  }
+                                  //if (_formKey.currentState.validate()) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => DashboardScreen()));
+                                  //} else {
+                                  //  setState(() {
+                                  //    _autoValidate = true;
+                                  //  });
+                                  //}
                                 },
                                 text: 'Entrar',
                                 textColor: Colors.white,

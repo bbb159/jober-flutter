@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         unselectedWidgetColor: Colors.white30,
       ),
+      debugShowCheckedModeBanner: false,
       home: HomeScreen(),
     );
   }
