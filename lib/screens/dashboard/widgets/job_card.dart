@@ -16,7 +16,7 @@ class JobCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         color: Colors.white,
-        elevation: 3,
+        elevation: 2,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -55,21 +55,27 @@ class JobCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   RaisedButton.icon(
-                      color: kPurpleDefaultColor,
-                      textColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5.0)),
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.compare_arrows,
-                        color: Colors.white,
-                      ),
-                      label: Text("Troca de serviço")),
+                    color: kPurpleDefaultColor,
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0)),
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.compare_arrows,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      "Troca de serviço",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ),
                   FlatButton(
                     child: const Text('CANDIDATAR',
                         style: TextStyle(
-                            color: kPurpleDefaultColor,
-                            fontWeight: FontWeight.bold)),
+                          color: kPurpleDefaultColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        )),
                     onPressed: () {},
                   ),
                 ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jober/commons/widgets/custom_app_bar.dart';
 import 'package:jober/commons/widgets/drawer_app_bar.dart';
 import 'package:jober/screens/dashboard/widgets/job_card.dart';
+import 'package:jober/screens/dashboard/widgets/job_resume_card.dart';
 import 'package:jober/utils/constants.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -105,9 +106,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Text(
+                'Minhas candidaturas',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: kPurpleDefaultColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              height: 100,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  JobResumeCard(
+                      title: 'Garçom no bar do João',
+                      description: 'Sirva mesas e atenda clientes'),
+                  JobResumeCard(
+                      title: 'Garçom no bar do João',
+                      description: 'Sirva mesas e atenda clientes'),
+                  JobResumeCard(
+                      title: 'Garçom no bar do João',
+                      description: 'Sirva mesas e atenda clientes'),
+                  JobResumeCard(
+                      title: 'Garçom no bar do João',
+                      description: 'Sirva mesas e atenda clientes'),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
                 'Oportunidades recentes',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: kPurpleDefaultColor,
                   fontWeight: FontWeight.bold,
                 ),
@@ -115,54 +149,57 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: ListView(
-                children: <Widget>[
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                  JobCard(
-                      title: 'Garçom no bar do João',
-                      description: 'Sirva mesas e atenda clientes'),
-                ],
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: ListView(
+                  children: <Widget>[
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                    JobCard(
+                        title: 'Garçom no bar do João',
+                        description: 'Sirva mesas e atenda clientes'),
+                  ],
+                ),
               ),
             ),
           ],
