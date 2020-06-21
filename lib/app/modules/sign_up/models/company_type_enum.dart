@@ -1,0 +1,1 @@
+enum CompanyType { MEI, LTDA }

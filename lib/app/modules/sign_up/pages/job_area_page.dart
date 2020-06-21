@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
 import 'package:jober/app/modules/sign_up/pages/email_password_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 
@@ -10,56 +13,7 @@ class JobAreaPage extends StatefulWidget {
 }
 
 class _JobAreaPageState extends State<JobAreaPage> {
-  List<String> areas = [
-    'Administração',
-    'Direito',
-    'Construção Civil',
-    'Engenheria e Arquitetura',
-    'Design',
-    'Gastronomia',
-    'Desenho Técnico',
-    'Padeiro',
-    'Pedreiro',
-    'Faxineira',
-    'Porteiro'
-  ];
-
-  List<String> areasFiltered = [
-    'Administração',
-    'Direito',
-    'Construção Civil',
-    'Engenheria e Arquitetura',
-    'Design',
-    'Gastronomia',
-    'Desenho Técnico',
-    'Padeiro',
-    'Pedreiro',
-    'Faxineira',
-    'Porteiro'
-  ];
-
-  String _radioValue = 'Administração';
-
-  final _searchAreaController = TextEditingController();
-
-  _handleRadioValueChange(value) {
-    setState(() {
-      _radioValue = value;
-    });
-  }
-
-  _filterJobArea(String value) {
-    setState(() {
-      if (value != '') {
-        areasFiltered = areas
-            .where((element) =>
-                element.toLowerCase().contains(value.toLowerCase()))
-            .toList();
-      } else {
-        areasFiltered = areas;
-      }
-    });
-  }
+  SignUpController signUpController = Modular.get<SignUpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -117,14 +71,14 @@ class _JobAreaPageState extends State<JobAreaPage> {
                       color: Colors.grey[100],
                     ),
                     title: new TextField(
-                      controller: _searchAreaController,
+                      controller: signUpController.searchAreaController,
                       decoration: new InputDecoration(
                         hintText: 'Filtre por área',
                         hintStyle: TextStyle(color: Colors.grey[100]),
                         border: InputBorder.none,
                       ),
                       style: TextStyle(color: Colors.grey[100]),
-                      onChanged: _filterJobArea,
+                      onChanged: signUpController.filterJobArea,
                     ),
                   ),
                 ),
@@ -141,10 +95,12 @@ class _JobAreaPageState extends State<JobAreaPage> {
                   ),
                   child: SizedBox(
                     height: 350,
-                    child: ListView(
-                      scrollDirection: Axis.vertical,
-                      children: buildItems(),
-                    ),
+                    child: Observer(builder,: (_, __) {
+                      return ListView(
+                        scrollDirection: Axis.vertical,
+                        children: buildItems(),
+                      );
+                    }),
                   ),
                 ),
               ),
@@ -154,28 +110,27 @@ class _JobAreaPageState extends State<JobAreaPage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => EmailPasswordPage()));
+          Modular.link.pushNamed('/email-password');
         },
       ),
     );
   }
 
   List<Widget> buildItems() {
-    return areasFiltered
+    return signUpController.areasFiltered
         .map((area) => new RadioListTile(
-              activeColor: Colors.white,
-              groupValue: _radioValue,
-              title: Text(
-                area,
-                style: TextStyle(
-                  color:
-                      area == _radioValue ? Colors.grey[50] : Colors.grey[400],
-                ),
+            activeColor: Colors.white,
+            groupValue: signUpController.radioValue,
+            title: Text(
+              area,
+              style: TextStyle(
+                color: area == signUpController.radioValue
+                    ? Colors.grey[50]
+                    : Colors.grey[400],
               ),
-              value: area,
-              onChanged: _handleRadioValueChange,
-            ))
+            ),
+            value: area,
+            onChanged: signUpController.handleRadioValueChange))
         .toList();
   }
 }

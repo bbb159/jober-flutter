@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/widgets/custom_raised_button.dart';
 import 'package:jober/app/modules/sign_in/pages/sign_in_page.dart';
@@ -67,8 +68,7 @@ class HomePage extends StatelessWidget {
                       height: 50,
                       bgColor: kBlueDefaultColor,
                       callback: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => SignInPage()));
+                        Modular.to.pushNamed('/sign-in');
                       },
                       text: 'Entrar',
                       textColor: Colors.white,
@@ -82,8 +82,7 @@ class HomePage extends StatelessWidget {
                       height: 50,
                       bgColor: Colors.white,
                       callback: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PersonTypePage()));
+                        Modular.to.pushNamed('/sign-up');
                       },
                       text: 'Cadastrar',
                       textColor: Colors.black,

@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/modules/sign_in/model/sign_in_request.dart';
 import 'package:jober/app/modules/sign_in/model/sign_in_response.dart';
 import 'package:jober/app/modules/sign_in/services/sign_in_service.dart';
@@ -9,24 +11,31 @@ class SignInController = _SignInControllerBase with _$SignInController;
 abstract class _SignInControllerBase with Store {
   final service = SignInService();
 
-  @observable
-  bool _isLoading = false;
-  get isLoading => _isLoading;
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  bool autoValidate = false;
 
   @observable
-  bool _showError = false;
-  get showError => _showError;
-  @action
-  changeShowError(bool value) => _showError = value;
+  bool isLoading = false;
 
-  String errorText = 'Usuário ou senha inválido';
+  @observable
+  bool showError = false;
 
-  @action
-  toggleIsLoading(bool value) => _isLoading = value;
+  String errorText = '*Usuário e/ou senha inválido';
 
-  Future<SignInResponse> signIn(SignInRequest signInRequest) async {
-    SignInResponse response = await service.signIn(signInRequest);
-    print(response.toJson());
-    return response;
+  Future<SignInResponse> signIn() async {
+    isLoading = true;
+    showError = false;
+    try {
+      SignInRequest signInRequest = SignInRequest(
+          email: emailController.text, password: passwordController.text);
+      await service.signIn(signInRequest);
+      Modular.to.pushNamed('/dashboard');
+    } catch (e) {
+      showError = true;
+    } finally {
+      isLoading = false;
+    }
   }
 }

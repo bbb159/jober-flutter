@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/widgets/custom_app_bar.dart';
 import 'package:jober/app/core/widgets/custom_raised_button.dart';
+import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
+import 'package:jober/app/modules/sign_up/models/user_type_enum.dart';
 import 'package:jober/app/modules/sign_up/pages/person_identifier_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 
@@ -13,11 +16,12 @@ class PersonTypePage extends StatefulWidget {
 }
 
 class _PersonTypePageState extends State<PersonTypePage> {
-  String personChoosed = 'PHYSICAL';
+  SignUpController signUpController = Modular.get<SignUpController>();
 
-  _setPersonChoosed(index, reason) {
+  _setPersonChoosed(index, _) {
     setState(() {
-      this.personChoosed = index == 0 ? 'PHYSICAL' : 'COMPANY';
+      signUpController.userType =
+          index == 0 ? UserType.PERSON : UserType.COMPANY;
     });
   }
 
@@ -80,7 +84,7 @@ class _PersonTypePageState extends State<PersonTypePage> {
               height: 40,
               bgColor: kPurpleDefaultColor,
               callback: () {},
-              text: personChoosed == 'PHYSICAL'
+              text: signUpController.userType == UserType.PERSON
                   ? 'Sou Pessoa Física'
                   : 'Sou Pessoa Jurídica',
               textColor: Colors.white,
@@ -99,8 +103,10 @@ class _PersonTypePageState extends State<PersonTypePage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => PersonIdentifierPage()));
+          String route = signUpController.userType == UserType.PERSON
+              ? '/person-identifier'
+              : '/company-identifier';
+          Modular.link.pushNamed(route);
         },
       ),
     );

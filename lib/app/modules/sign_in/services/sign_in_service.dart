@@ -8,11 +8,7 @@ class SignInService {
 
   Future<SignInResponse> signIn(SignInRequest request) async {
     String path = url + '/authenticate';
-    //try {
     var response = await dio.post(path, data: request.toJson());
     return SignInResponse.fromJson(response.data);
-    //} catch (e) {
-    //throw new Exception(e);
-    //}
   }
 }

@@ -8,12 +8,12 @@ import 'package:jober/app/modules/sign_up/pages/job_area_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 import 'package:jober/app/modules/sign_up/widgets/text_form_field.dart';
 
-class PersonIdentifierPage extends StatefulWidget {
+class CompanyIdentifierPage extends StatefulWidget {
   @override
-  _PersonIdentifierPageState createState() => _PersonIdentifierPageState();
+  _CompanyIdentifierPageState createState() => _CompanyIdentifierPageState();
 }
 
-class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
+class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
   SignUpController signUpController = Modular.get<SignUpController>();
 
   @override
@@ -52,8 +52,11 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
                         text: 'Para começar, nos informe seu ',
                       ),
                       new TextSpan(
-                        text: 'CPF, nome e sobrenome.',
+                        text: 'CNPJ, Razão Social e Nome Fantasia ',
                         style: TextStyle(color: kBlueDefaultColor),
+                      ),
+                      new TextSpan(
+                        text: 'da sua empresa.',
                       ),
                     ],
                   ),
@@ -61,30 +64,31 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
               ),
               SizedBox(height: 30),
               Form(
-                key: signUpController.personIdentifierFormKey,
+                key: signUpController.companyIdentifierFormKey,
                 autovalidate: signUpController.personIdentifierAutoValidate,
                 child: Column(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.personIdentifierController,
-                        validationText: 'CPF inválido',
-                        hintText: 'CPF',
-                        labelBorderText: 'CPF',
+                        controller:
+                            signUpController.companyRegisterNumberController,
+                        validationText: 'CNPJ inválido',
+                        hintText: 'CNPJ',
+                        labelBorderText: 'CNPJ',
                         textInputType: TextInputType.number,
                         colorPattern: ColorPattern.PURPLE,
-                        inputFormatters: [signUpController.cpfFormatter],
+                        inputFormatters: [signUpController.cnpjFormatter],
                       ),
                     ),
                     SizedBox(height: 30),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.nameController,
-                        validationText: 'Nome inválido',
-                        hintText: 'Nome',
-                        labelBorderText: 'Nome',
+                        controller: signUpController.companyNameController,
+                        validationText: 'Razão Social inválida',
+                        hintText: 'Razão Social',
+                        labelBorderText: 'Razão Social',
                         colorPattern: ColorPattern.PURPLE,
                       ),
                     ),
@@ -92,10 +96,11 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.lastNameController,
-                        validationText: 'Sobrenome inválido',
-                        hintText: 'Sobrenome',
-                        labelBorderText: 'Sobrenome',
+                        controller:
+                            signUpController.companTradingNameController,
+                        validationText: 'Nome Fantasia inválido',
+                        hintText: 'Nome Fantasia',
+                        labelBorderText: 'Nome Fantasia',
                         colorPattern: ColorPattern.PURPLE,
                       ),
                     ),
@@ -108,7 +113,7 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          if (signUpController.personIdentifierFormKey.currentState
+          if (signUpController.companyIdentifierFormKey.currentState
               .validate()) {
             Modular.link.pushNamed('/job-area');
           } else {
