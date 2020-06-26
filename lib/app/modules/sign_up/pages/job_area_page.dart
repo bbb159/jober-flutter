@@ -65,22 +65,25 @@ class _JobAreaPageState extends State<JobAreaPage> {
                 child: new Card(
                   color: Color.fromRGBO(91, 0, 183, 1),
                   child: new ListTile(
-                    dense: true,
-                    leading: new Icon(
-                      Icons.search,
-                      color: Colors.grey[100],
-                    ),
-                    title: new TextField(
-                      controller: signUpController.searchAreaController,
-                      decoration: new InputDecoration(
-                        hintText: 'Filtre por área',
-                        hintStyle: TextStyle(color: Colors.grey[100]),
-                        border: InputBorder.none,
+                      dense: true,
+                      leading: new Icon(
+                        Icons.search,
+                        color: Colors.grey[100],
                       ),
-                      style: TextStyle(color: Colors.grey[100]),
-                      onChanged: signUpController.filterJobArea,
-                    ),
-                  ),
+                      title: new Observer(
+                        builder: (_) {
+                          return new TextField(
+                            controller: signUpController.searchAreaController,
+                            decoration: new InputDecoration(
+                              hintText: 'Filtre por área',
+                              hintStyle: TextStyle(color: Colors.grey[100]),
+                              border: InputBorder.none,
+                            ),
+                            style: TextStyle(color: Colors.grey[100]),
+                            onChanged: signUpController.filterJobArea,
+                          );
+                        },
+                      )),
                 ),
               ),
               SizedBox(height: 10),
@@ -95,10 +98,13 @@ class _JobAreaPageState extends State<JobAreaPage> {
                   ),
                   child: SizedBox(
                     height: 350,
-                    child: Observer(builder,: (_, __) {
-                      return ListView(
-                        scrollDirection: Axis.vertical,
-                        children: buildItems(),
+                    child: Observer(builder: (_) {
+                      return ListView.builder(
+                        itemCount: signUpController.areasFiltered.length,
+                        itemBuilder: (context, index) {
+                          return buildListTile(
+                              signUpController.areasFiltered[index]);
+                        },
                       );
                     }),
                   ),
@@ -116,21 +122,24 @@ class _JobAreaPageState extends State<JobAreaPage> {
     );
   }
 
-  List<Widget> buildItems() {
-    return signUpController.areasFiltered
-        .map((area) => new RadioListTile(
-            activeColor: Colors.white,
-            groupValue: signUpController.radioValue,
-            title: Text(
-              area,
-              style: TextStyle(
-                color: area == signUpController.radioValue
-                    ? Colors.grey[50]
-                    : Colors.grey[400],
-              ),
+  Widget buildListTile(area) {
+    return Observer(
+      builder: (_) {
+        return RadioListTile(
+          activeColor: Colors.white,
+          groupValue: signUpController.radioValue,
+          title: Text(
+            area,
+            style: TextStyle(
+              color: area == signUpController.radioValue
+                  ? Colors.grey[50]
+                  : Colors.grey[400],
             ),
-            value: area,
-            onChanged: signUpController.handleRadioValueChange))
-        .toList();
+          ),
+          value: area,
+          onChanged: signUpController.handleRadioValueChange,
+        );
+      },
+    );
   }
 }

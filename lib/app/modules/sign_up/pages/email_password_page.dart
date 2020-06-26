@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/utils/enums.dart';
 import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
 import 'package:jober/app/modules/sign_up/pages/sign_up_successfull_page.dart';
 import 'package:jober/app/modules/sign_up/pages/use_terms_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
@@ -14,11 +16,7 @@ class EmailPasswordPage extends StatefulWidget {
 }
 
 class _EmailPasswordPageState extends State<EmailPasswordPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  bool _autoValidate = false;
+  SignUpController signUpController = Modular.get<SignUpController>();
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +65,15 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                   ),
                   SizedBox(height: 30),
                   Form(
-                    key: _formKey,
-                    autovalidate: _autoValidate,
+                    key: signUpController.emailPasswordFormKey,
+                    autovalidate: signUpController.emailPasswordAutoValidate,
                     child: Column(
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller: _emailController,
+                            controller:
+                                signUpController.emailPasswordController,
                             validationText: 'E-mail inválido',
                             hintText: 'E-mail',
                             labelBorderText: 'E-mail',
@@ -86,7 +85,8 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller: _passwordController,
+                            controller:
+                                signUpController.emailPassword2Controller,
                             validationText: 'Senha inválida',
                             hintText: 'Crie uma senha',
                             labelBorderText: 'Crie uma senha',
@@ -97,7 +97,8 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller: _confirmPasswordController,
+                            controller:
+                                signUpController.confirmPasswordController,
                             validationText: 'Confirmação de senha inválida',
                             hintText: 'Repita sua senha',
                             labelBorderText: 'Repita sua senha',
@@ -148,12 +149,11 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
       bottomNavigationBar: NextButton(
         text: 'Finalizar',
         callback: () {
-          if (_formKey.currentState.validate()) {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => SignUpSucessfulPage()));
+          if (signUpController.emailPasswordFormKey.currentState.validate()) {
+            Modular.link.pushNamed('/sign-up-sucessfull');
           } else {
             setState(() {
-              _autoValidate = true;
+              signUpController.emailPasswordAutoValidate = true;
             });
           }
         },

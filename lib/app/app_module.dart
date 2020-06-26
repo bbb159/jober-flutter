@@ -1,4 +1,5 @@
 import 'package:jober/app/modules/dashboard/dashboard_module.dart';
+import 'package:jober/app/modules/shared/auth/auth_store.dart';
 import 'package:jober/app/modules/sign_in/sign_in_module.dart';
 import 'package:jober/app/modules/sign_up/sign_up_module.dart';
 
@@ -12,6 +13,7 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => AuthStore()),
       ];
 
   @override
