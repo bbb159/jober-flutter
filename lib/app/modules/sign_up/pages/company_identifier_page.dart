@@ -65,7 +65,7 @@ class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
               SizedBox(height: 30),
               Form(
                 key: signUpController.companyIdentifierFormKey,
-                autovalidate: signUpController.personIdentifierAutoValidate,
+                autovalidate: signUpController.companyIdentifierAutoValidate,
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -97,7 +97,7 @@ class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
                         controller:
-                            signUpController.companTradingNameController,
+                            signUpController.companyTradingNameController,
                         validationText: 'Nome Fantasia inválido',
                         hintText: 'Nome Fantasia',
                         labelBorderText: 'Nome Fantasia',
@@ -115,10 +115,10 @@ class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
         callback: () {
           if (signUpController.companyIdentifierFormKey.currentState
               .validate()) {
-            Modular.link.pushNamed('/job-area');
+            signUpController.fillIdentifier();
           } else {
             setState(() {
-              signUpController.personIdentifierAutoValidate = true;
+              signUpController.companyIdentifierAutoValidate = true;
             });
           }
         },

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/utils/enums.dart';
@@ -72,8 +73,7 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller:
-                                signUpController.emailPasswordController,
+                            controller: signUpController.emailController,
                             validationText: 'E-mail inválido',
                             hintText: 'E-mail',
                             labelBorderText: 'E-mail',
@@ -85,25 +85,30 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller:
-                                signUpController.emailPassword2Controller,
+                            controller: signUpController.passwordController,
                             validationText: 'Senha inválida',
                             hintText: 'Crie uma senha',
                             labelBorderText: 'Crie uma senha',
                             colorPattern: ColorPattern.PURPLE,
+                            obscureText: true,
                           ),
                         ),
                         SizedBox(height: 30),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: CustomTextFormField(
-                            controller:
-                                signUpController.confirmPasswordController,
-                            validationText: 'Confirmação de senha inválida',
-                            hintText: 'Repita sua senha',
-                            labelBorderText: 'Repita sua senha',
-                            colorPattern: ColorPattern.PURPLE,
-                          ),
+                          child: Observer(builder: (_) {
+                            return CustomTextFormField(
+                              controller:
+                                  signUpController.confirmPasswordController,
+                              validationText: 'Confirmação de senha inválida',
+                              hintText: 'Repita sua senha',
+                              labelBorderText: 'Repita sua senha',
+                              colorPattern: ColorPattern.PURPLE,
+                              obscureText: true,
+                              errorValidation:
+                                  signUpController.passwordValidation,
+                            );
+                          }),
                         ),
                       ],
                     ),
@@ -150,7 +155,7 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
         text: 'Finalizar',
         callback: () {
           if (signUpController.emailPasswordFormKey.currentState.validate()) {
-            Modular.link.pushNamed('/sign-up-sucessfull');
+            signUpController.fillAuthInfo();
           } else {
             setState(() {
               signUpController.emailPasswordAutoValidate = true;

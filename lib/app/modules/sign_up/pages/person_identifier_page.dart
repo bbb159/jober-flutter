@@ -4,7 +4,6 @@ import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/utils/enums.dart';
 import 'package:jober/app/core/widgets/custom_app_bar.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
-import 'package:jober/app/modules/sign_up/pages/job_area_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 import 'package:jober/app/modules/sign_up/widgets/text_form_field.dart';
 
@@ -110,7 +109,7 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
         callback: () {
           if (signUpController.personIdentifierFormKey.currentState
               .validate()) {
-            Modular.link.pushNamed('/job-area');
+            signUpController.fillIdentifier();
           } else {
             setState(() {
               signUpController.personIdentifierAutoValidate = true;

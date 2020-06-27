@@ -12,6 +12,7 @@ class CustomTextFormField extends StatefulWidget {
   final List<TextInputFormatter> inputFormatters;
   final bool obscureText;
   final ColorPattern colorPattern;
+  final String errorValidation;
 
   CustomTextFormField(
       {@required this.controller,
@@ -21,7 +22,8 @@ class CustomTextFormField extends StatefulWidget {
       this.textInputType,
       this.inputFormatters,
       this.obscureText,
-      this.colorPattern});
+      this.colorPattern,
+      this.errorValidation});
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -64,6 +66,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return TextFormField(
       controller: widget.controller,
       decoration: InputDecoration(
+        errorText: widget.errorValidation,
         labelText: widget.labelBorderText,
         labelStyle: TextStyle(color: _hintTextColor),
         errorStyle: TextStyle(color: _errorColor),

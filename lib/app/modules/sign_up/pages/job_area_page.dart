@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jober/app/core/utils/constants.dart';
 import 'package:jober/app/core/widgets/custom_app_bar.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
-import 'package:jober/app/modules/sign_up/pages/email_password_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 
 class JobAreaPage extends StatefulWidget {
@@ -116,7 +115,7 @@ class _JobAreaPageState extends State<JobAreaPage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          Modular.link.pushNamed('/email-password');
+          signUpController.fillJobArea();
         },
       ),
     );

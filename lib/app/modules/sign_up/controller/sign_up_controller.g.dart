@@ -9,18 +9,19 @@ part of 'sign_up_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SignUpController on _SignUpControllerBase, Store {
-  final _$radioValueAtom = Atom(name: '_SignUpControllerBase.radioValue');
+  final _$passwordValidationAtom =
+      Atom(name: '_SignUpControllerBase.passwordValidation');
 
   @override
-  String get radioValue {
-    _$radioValueAtom.reportRead();
-    return super.radioValue;
+  String get passwordValidation {
+    _$passwordValidationAtom.reportRead();
+    return super.passwordValidation;
   }
 
   @override
-  set radioValue(String value) {
-    _$radioValueAtom.reportWrite(value, super.radioValue, () {
-      super.radioValue = value;
+  set passwordValidation(String value) {
+    _$passwordValidationAtom.reportWrite(value, super.passwordValidation, () {
+      super.passwordValidation = value;
     });
   }
 
@@ -52,7 +53,7 @@ mixin _$SignUpController on _SignUpControllerBase, Store {
   @override
   String toString() {
     return '''
-radioValue: ${radioValue}
+passwordValidation: ${passwordValidation}
     ''';
   }
 }

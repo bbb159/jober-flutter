@@ -8,10 +8,20 @@ import 'package:jober/app/modules/sign_up/pages/person_identifier_page.dart';
 import 'package:jober/app/modules/sign_up/pages/person_type_page.dart';
 import 'package:jober/app/modules/sign_up/pages/sign_up_successfull_page.dart';
 import 'package:jober/app/modules/sign_up/pages/use_terms_page.dart';
+import 'package:jober/app/modules/sign_up/services/sign_up_service.dart';
+import 'package:jober/app/modules/sign_up/stores/sign_up_store.dart';
 
 class SignUpModule extends ChildModule {
   @override
-  List<Bind> get binds => [Bind((i) => SignUpController(i.get<AuthStore>()))];
+  List<Bind> get binds => [
+        Bind((i) => SignUpController(
+              i.get<AuthStore>(),
+              i.get<SignUpStore>(),
+              i.get<SignUpService>(),
+            )),
+        Bind((i) => SignUpService()),
+        Bind((i) => SignUpStore())
+      ];
 
   @override
   List<Router> get routers => [
