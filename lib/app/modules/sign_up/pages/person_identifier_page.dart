@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/utils/enums.dart';
-import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/utils/enums.dart';
+import 'package:jober/app/shared/widgets/custom_app_bar.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 import 'package:jober/app/modules/sign_up/widgets/text_form_field.dart';
@@ -12,9 +12,8 @@ class PersonIdentifierPage extends StatefulWidget {
   _PersonIdentifierPageState createState() => _PersonIdentifierPageState();
 }
 
-class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
-  SignUpController signUpController = Modular.get<SignUpController>();
-
+class _PersonIdentifierPageState
+    extends ModularState<PersonIdentifierPage, SignUpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,27 +59,27 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
               ),
               SizedBox(height: 30),
               Form(
-                key: signUpController.personIdentifierFormKey,
-                autovalidate: signUpController.personIdentifierAutoValidate,
+                key: controller.personIdentifierFormKey,
+                autovalidate: controller.personIdentifierAutoValidate,
                 child: Column(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.personIdentifierController,
+                        controller: controller.personIdentifierController,
                         validationText: 'CPF inválido',
                         hintText: 'CPF',
                         labelBorderText: 'CPF',
                         textInputType: TextInputType.number,
                         colorPattern: ColorPattern.PURPLE,
-                        inputFormatters: [signUpController.cpfFormatter],
+                        inputFormatters: [controller.cpfFormatter],
                       ),
                     ),
                     SizedBox(height: 30),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.nameController,
+                        controller: controller.nameController,
                         validationText: 'Nome inválido',
                         hintText: 'Nome',
                         labelBorderText: 'Nome',
@@ -91,7 +90,7 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.lastNameController,
+                        controller: controller.lastNameController,
                         validationText: 'Sobrenome inválido',
                         hintText: 'Sobrenome',
                         labelBorderText: 'Sobrenome',
@@ -107,12 +106,11 @@ class _PersonIdentifierPageState extends State<PersonIdentifierPage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          if (signUpController.personIdentifierFormKey.currentState
-              .validate()) {
-            signUpController.fillIdentifier();
+          if (controller.personIdentifierFormKey.currentState.validate()) {
+            controller.fillIdentifier();
           } else {
             setState(() {
-              signUpController.personIdentifierAutoValidate = true;
+              controller.personIdentifierAutoValidate = true;
             });
           }
         },

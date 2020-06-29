@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/utils/enums.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/utils/enums.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController controller;

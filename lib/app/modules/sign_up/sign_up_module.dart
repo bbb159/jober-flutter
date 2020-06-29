@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/modules/shared/auth/auth_store.dart';
+import 'package:jober/app/shared/stores/auth/auth_store.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
 import 'package:jober/app/modules/sign_up/pages/company_identifier_page.dart';
 import 'package:jober/app/modules/sign_up/pages/email_password_page.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/widgets/custom_app_bar.dart';
 
 class UseTermsPage extends StatelessWidget {
   @override

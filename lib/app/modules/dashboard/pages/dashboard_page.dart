@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/widgets/drawer_app_bar.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/widgets/drawer_app_bar.dart';
 import 'package:jober/app/modules/dashboard/widgets/job_card.dart';
 import 'package:jober/app/modules/dashboard/widgets/job_resume_card.dart';
 

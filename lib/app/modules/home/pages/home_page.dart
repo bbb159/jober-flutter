@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/widgets/custom_raised_button.dart';
-import 'package:jober/app/modules/sign_in/pages/sign_in_page.dart';
-import 'package:jober/app/modules/sign_up/pages/person_type_page.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/widgets/custom_raised_button.dart';
 
 class HomePage extends StatelessWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jober/app/core/utils/constants.dart';
+import 'package:jober/app/shared/utils/constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

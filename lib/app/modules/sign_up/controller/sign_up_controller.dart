@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/modules/shared/auth/auth_store.dart';
-import 'package:jober/app/modules/sign_up/models/sign_up_request_model.dart';
+import 'package:jober/app/shared/stores/auth/auth_store.dart';
 import 'package:jober/app/modules/sign_up/models/user_type_enum.dart';
 import 'package:jober/app/modules/sign_up/services/sign_up_service.dart';
 import 'package:jober/app/modules/sign_up/stores/sign_up_store.dart';
@@ -11,7 +10,7 @@ part 'sign_up_controller.g.dart';
 
 class SignUpController = _SignUpControllerBase with _$SignUpController;
 
-abstract class _SignUpControllerBase with Store {
+abstract class _SignUpControllerBase extends Disposable with Store {
   final AuthStore _authStore;
   final SignUpStore _signUpStore;
   final SignUpService _signUpService;
@@ -112,6 +111,21 @@ abstract class _SignUpControllerBase with Store {
 
   confirmSignUp() async {
     //await _signUpService.signUp(signUpRequest, userType);
-    Modular.link.pushNamed('/sign-up-sucessfull');
+    Modular.link.pushNamedAndRemoveUntil(
+        '/sign-up-sucessfull', ModalRoute.withName('/'));
+  }
+
+  @override
+  void dispose() {
+    personIdentifierController.dispose();
+    nameController.dispose();
+    lastNameController.dispose();
+    companyRegisterNumberController.dispose();
+    companyNameController.dispose();
+    companyTradingNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    searchAreaController.dispose();
   }
 }

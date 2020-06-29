@@ -2,11 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/utils/enums.dart';
-import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/utils/enums.dart';
+import 'package:jober/app/shared/widgets/custom_app_bar.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
-import 'package:jober/app/modules/sign_up/pages/sign_up_successfull_page.dart';
 import 'package:jober/app/modules/sign_up/pages/use_terms_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 import 'package:jober/app/modules/sign_up/widgets/text_form_field.dart';
@@ -16,9 +15,8 @@ class EmailPasswordPage extends StatefulWidget {
   _EmailPasswordPageState createState() => _EmailPasswordPageState();
 }
 
-class _EmailPasswordPageState extends State<EmailPasswordPage> {
-  SignUpController signUpController = Modular.get<SignUpController>();
-
+class _EmailPasswordPageState
+    extends ModularState<EmailPasswordPage, SignUpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,14 +64,14 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                   ),
                   SizedBox(height: 30),
                   Form(
-                    key: signUpController.emailPasswordFormKey,
-                    autovalidate: signUpController.emailPasswordAutoValidate,
+                    key: controller.emailPasswordFormKey,
+                    autovalidate: controller.emailPasswordAutoValidate,
                     child: Column(
                       children: <Widget>[
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller: signUpController.emailController,
+                            controller: controller.emailController,
                             validationText: 'E-mail inválido',
                             hintText: 'E-mail',
                             labelBorderText: 'E-mail',
@@ -85,7 +83,7 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: CustomTextFormField(
-                            controller: signUpController.passwordController,
+                            controller: controller.passwordController,
                             validationText: 'Senha inválida',
                             hintText: 'Crie uma senha',
                             labelBorderText: 'Crie uma senha',
@@ -98,15 +96,13 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: Observer(builder: (_) {
                             return CustomTextFormField(
-                              controller:
-                                  signUpController.confirmPasswordController,
+                              controller: controller.confirmPasswordController,
                               validationText: 'Confirmação de senha inválida',
                               hintText: 'Repita sua senha',
                               labelBorderText: 'Repita sua senha',
                               colorPattern: ColorPattern.PURPLE,
                               obscureText: true,
-                              errorValidation:
-                                  signUpController.passwordValidation,
+                              errorValidation: controller.passwordValidation,
                             );
                           }),
                         ),
@@ -154,11 +150,11 @@ class _EmailPasswordPageState extends State<EmailPasswordPage> {
       bottomNavigationBar: NextButton(
         text: 'Finalizar',
         callback: () {
-          if (signUpController.emailPasswordFormKey.currentState.validate()) {
-            signUpController.fillAuthInfo();
+          if (controller.emailPasswordFormKey.currentState.validate()) {
+            controller.fillAuthInfo();
           } else {
             setState(() {
-              signUpController.emailPasswordAutoValidate = true;
+              controller.emailPasswordAutoValidate = true;
             });
           }
         },

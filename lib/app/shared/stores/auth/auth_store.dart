@@ -1,4 +1,4 @@
-import 'package:jober/app/modules/shared/models/auth_model.dart';
+import 'package:jober/app/shared/models/auth_model.dart';
 import 'package:mobx/mobx.dart';
 part 'auth_store.g.dart';
 

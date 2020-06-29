@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/utils/enums.dart';
-import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/utils/enums.dart';
+import 'package:jober/app/shared/widgets/custom_app_bar.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
-import 'package:jober/app/modules/sign_up/pages/job_area_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 import 'package:jober/app/modules/sign_up/widgets/text_form_field.dart';
 
@@ -13,9 +12,8 @@ class CompanyIdentifierPage extends StatefulWidget {
   _CompanyIdentifierPageState createState() => _CompanyIdentifierPageState();
 }
 
-class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
-  SignUpController signUpController = Modular.get<SignUpController>();
-
+class _CompanyIdentifierPageState
+    extends ModularState<CompanyIdentifierPage, SignUpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,28 +62,27 @@ class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
               ),
               SizedBox(height: 30),
               Form(
-                key: signUpController.companyIdentifierFormKey,
-                autovalidate: signUpController.companyIdentifierAutoValidate,
+                key: controller.companyIdentifierFormKey,
+                autovalidate: controller.companyIdentifierAutoValidate,
                 child: Column(
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller:
-                            signUpController.companyRegisterNumberController,
+                        controller: controller.companyRegisterNumberController,
                         validationText: 'CNPJ inválido',
                         hintText: 'CNPJ',
                         labelBorderText: 'CNPJ',
                         textInputType: TextInputType.number,
                         colorPattern: ColorPattern.PURPLE,
-                        inputFormatters: [signUpController.cnpjFormatter],
+                        inputFormatters: [controller.cnpjFormatter],
                       ),
                     ),
                     SizedBox(height: 30),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller: signUpController.companyNameController,
+                        controller: controller.companyNameController,
                         validationText: 'Razão Social inválida',
                         hintText: 'Razão Social',
                         labelBorderText: 'Razão Social',
@@ -96,8 +93,7 @@ class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: CustomTextFormField(
-                        controller:
-                            signUpController.companyTradingNameController,
+                        controller: controller.companyTradingNameController,
                         validationText: 'Nome Fantasia inválido',
                         hintText: 'Nome Fantasia',
                         labelBorderText: 'Nome Fantasia',
@@ -113,12 +109,11 @@ class _CompanyIdentifierPageState extends State<CompanyIdentifierPage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          if (signUpController.companyIdentifierFormKey.currentState
-              .validate()) {
-            signUpController.fillIdentifier();
+          if (controller.companyIdentifierFormKey.currentState.validate()) {
+            controller.fillIdentifier();
           } else {
             setState(() {
-              signUpController.companyIdentifierAutoValidate = true;
+              controller.companyIdentifierAutoValidate = true;
             });
           }
         },

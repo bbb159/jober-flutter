@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/widgets/custom_app_bar.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/widgets/custom_app_bar.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 
@@ -11,9 +11,7 @@ class JobAreaPage extends StatefulWidget {
   _JobAreaPageState createState() => _JobAreaPageState();
 }
 
-class _JobAreaPageState extends State<JobAreaPage> {
-  SignUpController signUpController = Modular.get<SignUpController>();
-
+class _JobAreaPageState extends ModularState<JobAreaPage, SignUpController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,14 +70,14 @@ class _JobAreaPageState extends State<JobAreaPage> {
                       title: new Observer(
                         builder: (_) {
                           return new TextField(
-                            controller: signUpController.searchAreaController,
+                            controller: controller.searchAreaController,
                             decoration: new InputDecoration(
                               hintText: 'Filtre por área',
                               hintStyle: TextStyle(color: Colors.grey[100]),
                               border: InputBorder.none,
                             ),
                             style: TextStyle(color: Colors.grey[100]),
-                            onChanged: signUpController.filterJobArea,
+                            onChanged: controller.filterJobArea,
                           );
                         },
                       )),
@@ -99,10 +97,9 @@ class _JobAreaPageState extends State<JobAreaPage> {
                     height: 350,
                     child: Observer(builder: (_) {
                       return ListView.builder(
-                        itemCount: signUpController.areasFiltered.length,
+                        itemCount: controller.areasFiltered.length,
                         itemBuilder: (context, index) {
-                          return buildListTile(
-                              signUpController.areasFiltered[index]);
+                          return buildListTile(controller.areasFiltered[index]);
                         },
                       );
                     }),
@@ -115,7 +112,7 @@ class _JobAreaPageState extends State<JobAreaPage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          signUpController.fillJobArea();
+          controller.fillJobArea();
         },
       ),
     );
@@ -126,17 +123,17 @@ class _JobAreaPageState extends State<JobAreaPage> {
       builder: (_) {
         return RadioListTile(
           activeColor: Colors.white,
-          groupValue: signUpController.radioValue,
+          groupValue: controller.radioValue,
           title: Text(
             area,
             style: TextStyle(
-              color: area == signUpController.radioValue
+              color: area == controller.radioValue
                   ? Colors.grey[50]
                   : Colors.grey[400],
             ),
           ),
           value: area,
-          onChanged: signUpController.handleRadioValueChange,
+          onChanged: controller.handleRadioValueChange,
         );
       },
     );

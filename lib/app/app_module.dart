@@ -1,7 +1,7 @@
 import 'package:jober/app/modules/dashboard/dashboard_module.dart';
-import 'package:jober/app/modules/shared/auth/auth_store.dart';
 import 'package:jober/app/modules/sign_in/sign_in_module.dart';
 import 'package:jober/app/modules/sign_up/sign_up_module.dart';
+import 'package:jober/app/shared/stores/auth/auth_store.dart';
 
 import 'app_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';

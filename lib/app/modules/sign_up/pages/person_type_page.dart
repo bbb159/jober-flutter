@@ -2,12 +2,11 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jober/app/core/utils/constants.dart';
-import 'package:jober/app/core/widgets/custom_app_bar.dart';
-import 'package:jober/app/core/widgets/custom_raised_button.dart';
+import 'package:jober/app/shared/utils/constants.dart';
+import 'package:jober/app/shared/widgets/custom_app_bar.dart';
+import 'package:jober/app/shared/widgets/custom_raised_button.dart';
 import 'package:jober/app/modules/sign_up/controller/sign_up_controller.dart';
 import 'package:jober/app/modules/sign_up/models/user_type_enum.dart';
-import 'package:jober/app/modules/sign_up/pages/person_identifier_page.dart';
 import 'package:jober/app/modules/sign_up/widgets/next_button.dart';
 
 class PersonTypePage extends StatefulWidget {
@@ -15,13 +14,11 @@ class PersonTypePage extends StatefulWidget {
   _PersonTypePageState createState() => _PersonTypePageState();
 }
 
-class _PersonTypePageState extends State<PersonTypePage> {
-  SignUpController signUpController = Modular.get<SignUpController>();
-
+class _PersonTypePageState
+    extends ModularState<PersonTypePage, SignUpController> {
   _setPersonChoosed(index, _) {
     setState(() {
-      signUpController.userType =
-          index == 0 ? UserType.PERSON : UserType.COMPANY;
+      controller.userType = index == 0 ? UserType.PERSON : UserType.COMPANY;
     });
   }
 
@@ -84,7 +81,7 @@ class _PersonTypePageState extends State<PersonTypePage> {
               height: 40,
               bgColor: kPurpleDefaultColor,
               callback: () {},
-              text: signUpController.userType == UserType.PERSON
+              text: controller.userType == UserType.PERSON
                   ? 'Sou Pessoa Física'
                   : 'Sou Pessoa Jurídica',
               textColor: Colors.white,
@@ -103,7 +100,7 @@ class _PersonTypePageState extends State<PersonTypePage> {
       ),
       bottomNavigationBar: NextButton(
         callback: () {
-          String route = signUpController.userType == UserType.PERSON
+          String route = controller.userType == UserType.PERSON
               ? '/person-identifier'
               : '/company-identifier';
           Modular.link.pushNamed(route);
