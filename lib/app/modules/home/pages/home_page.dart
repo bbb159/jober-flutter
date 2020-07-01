@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:jober/app/modules/home/home_controller.dart';
 import 'package:jober/app/shared/utils/constants.dart';
 import 'package:jober/app/shared/widgets/custom_raised_button.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +72,7 @@ class HomePage extends StatelessWidget {
                       height: 50,
                       bgColor: kBlueDefaultColor,
                       callback: () {
-                        Modular.to.pushNamed('/sign-in');
+                        controller.signIn();
                       },
                       text: 'Entrar',
                       textColor: Colors.white,

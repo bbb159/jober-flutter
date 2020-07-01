@@ -12,5 +12,8 @@ abstract class _AuthStoreBase with Store {
   setAuth(AuthModel value) => authModel = value;
 
   @computed
-  bool get isLogged => authModel.email != null && authModel.jwt != null;
+  bool get isLogged =>
+      authModel != null && authModel.email != null && authModel.jwt != null;
+
+  String get jwt => authModel != null ? authModel.jwt : '';
 }
