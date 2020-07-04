@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:jober/app/modules/panel/submodules/dashboard/dashboard_controller.dart';
+import 'package:jober/app/modules/panel/submodules/dashboard/widgets/job_card.dart';
+import 'package:jober/app/modules/panel/submodules/dashboard/widgets/job_resume_card.dart';
 import 'package:jober/app/shared/utils/constants.dart';
 import 'package:jober/app/shared/widgets/drawer_app_bar.dart';
-import 'package:jober/app/modules/dashboard/widgets/job_card.dart';
-import 'package:jober/app/modules/dashboard/widgets/job_resume_card.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _DashboardPageState
+    extends ModularState<DashboardPage, DashboardController> {
   final _searchJobsController = TextEditingController();
 
   @override
@@ -201,22 +204,6 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ),
             ),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                title: Text('Home'),
-                backgroundColor: kBlueDefaultColor),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.content_paste),
-                title: Text('Abrir vaga'),
-                backgroundColor: kBlueDefaultColor),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.view_carousel),
-                title: Text('Vagas'),
-                backgroundColor: kBlueDefaultColor)
           ],
         ),
       ),

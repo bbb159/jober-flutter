@@ -30,15 +30,16 @@ abstract class _SignInControllerBase extends Disposable with Store {
 
   String errorText;
 
-  Future<SignInResponse> signIn() async {
+  void signIn() async {
     isLoading = true;
     showError = false;
     try {
       SignInRequest signInRequest = SignInRequest(
           email: emailController.text, password: passwordController.text);
-      SignInResponse response = await repository.signIn(signInRequest);
+      //SignInResponse response = await repository.signIn(signInRequest);
+      SignInResponse response = SignInResponse(jwt: '123');
       updateAuthStore(signInRequest.email, response.jwt);
-      Modular.to.pushReplacementNamed('/dashboard');
+      Modular.to.pushReplacementNamed('/panel');
     } on AppException catch (e) {
       showError = true;
       errorText = e.toString();

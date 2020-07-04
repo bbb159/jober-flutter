@@ -1,4 +1,4 @@
-import 'package:jober/app/modules/dashboard/dashboard_module.dart';
+import 'package:jober/app/modules/panel/panel_module.dart';
 import 'package:jober/app/modules/sign_in/sign_in_module.dart';
 import 'package:jober/app/modules/sign_up/sign_up_module.dart';
 import 'package:jober/app/shared/services/client_http_service.dart';
@@ -23,7 +23,7 @@ class AppModule extends MainModule {
         Router(Modular.initialRoute, module: HomeModule()),
         Router('/sign-in', module: SignInModule()),
         Router('/sign-up', module: SignUpModule()),
-        Router('/dashboard', module: DashboardModule())
+        Router('/panel', module: PanelModule())
       ];
 
   @override

@@ -12,7 +12,7 @@ abstract class _HomeControllerBase with Store {
 
   signIn() {
     if (_authStore.isLogged) {
-      Modular.to.pushNamed('/dashboard');
+      Modular.to.pushNamed('/panel');
     } else {
       Modular.to.pushNamed('/sign-in');
     }
